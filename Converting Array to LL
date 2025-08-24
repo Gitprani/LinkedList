@@ -31,5 +31,11 @@ public class Main{
     
     System.out.println(head);
     System.out.print(head.data);
+        
+    Node temp=head;                             //Transversal of LL
+    while(temp!=null){
+        System.out.print(temp.data+" ");
+        temp=temp.next;
+        }
     }
 }
