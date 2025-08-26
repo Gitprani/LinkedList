@@ -1,0 +1,32 @@
+private static Node insertBeforeEl(Node head,int el,int val){
+        if(head==null){
+            return head;
+        }
+        if(head.data==el){                       //if head is the data
+            Node temp=new Node(val,head);
+            return temp;
+        }
+        Node temp=head;      
+        while(temp.next!=null){                // do not take 'temp.data' but 'temp.next.data'
+            if(temp.next.data==el){               
+                Node x=new Node(val,temp.next);        // make the next of New's as temp's next
+                temp.next=x;                           // temps's next now is new
+                break;
+            }
+            temp=temp.next;
+            
+        }
+        return head;
+    }
+
+why not temp.data
+while(temp!=null){
+            if(temp.data==el){               
+                Node x=new Node(val);
+                x.next=temp;
+                                        //// prev of temp cannot be done
+                break;
+            }
+            temp=temp.next;
+            
+        }
