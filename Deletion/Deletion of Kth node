@@ -41,6 +41,7 @@ public class Main
             cnt++;
             if(cnt==k){
                 prev.next=prev.next.next;         // skip the kth node 
+                 break;
             }
             prev=temp;                         // set/update prev to temp before moving ahead
             temp=temp.next;                    // temp goes on
