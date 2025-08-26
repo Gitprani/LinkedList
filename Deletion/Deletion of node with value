@@ -39,6 +39,7 @@ public class Main
         while(temp!=null){
             if(temp.data==val){         //just transverse and check for val with ongoing temp
                 prev.next=prev.next.next;
+                break;
             }  
             prev=temp;           // update prev
             temp=temp.next;        // transverse the next as well
