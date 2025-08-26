@@ -1,0 +1,51 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    
+    Node(int data1,Node next1){
+        this.data=data1;
+        this.next=next1;
+    }
+    Node(int data1){
+        this.data=data1;
+        this.next=null;
+    }
+}
+public class Main
+{
+    private static Node convert(int arr[]){
+        Node head=new Node(arr[0]);
+        Node mover=head;
+        for(int i=1;i<arr.length;i++){
+            Node temp=new Node(arr[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+    private static Node removeTail(Node head){
+        if(head==null || head.next ==null){        // when no elements and one element
+            return head;
+        }
+        Node temp=head;       // assign the head to temp because do not tamper head
+        
+        while(temp.next.next != null){     // to stop at 2nd last node
+            temp=temp.next;             
+        }
+        temp.next=null;                   // update the 2nd last node to point to null
+        return head;
+    }
+	public static void main(String[] args) {
+	    int arr[]={12,4,3,6,7};
+	    Node head=convert(arr);
+	    head=removeTail(head);            // will have head till before tail
+	    
+	    Node temp=head;                  // Transversal of tail Removed LL
+	    while(temp!=null){
+	        System.out.print(temp.data+" ");
+	        temp=temp.next;
+	    }
+		
+	}
+}
