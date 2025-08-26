@@ -1,3 +1,4 @@
+K ->(1to LL.length+1)
 private static Node insertK(Node head,int k,int val){
         if(head==null){
             if(k==1){                      // case when empty LL
