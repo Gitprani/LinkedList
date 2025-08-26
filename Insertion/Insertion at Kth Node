@@ -1,0 +1,27 @@
+private static Node insertK(Node head,int k,int val){
+        if(head==null){
+            if(k==1){                      // case when empty LL
+            Node temp=new Node(val);
+            return temp;
+            }
+            else{
+                return head;
+            }
+        }
+        if(k==1){           // insertion at head
+            return new Node(val,head); // next->head, so previous node
+        }
+        Node temp=head;
+        int cnt=0;
+        while(temp!=null){
+            cnt++;
+            if(cnt==k-1){               // stop at k-1 node
+                Node x=new Node(val);
+                x.next=temp.next;         // new Node's next is temp's next(k-1)
+                temp.next=x;              //temp's next is new Node
+                break;
+            }
+            temp=temp.next;
+            
+        }
+        return head;
