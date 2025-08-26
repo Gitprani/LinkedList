@@ -1,0 +1,13 @@
+private static Node insertTail(Node head,int val){
+        if(head==null){
+            Node temp=new Node(val);                  // if empty LL
+            return temp;
+        }
+        Node temp=head;                              // do not tamper head, so temp for transversal
+        while(temp.next!=null){                     // to stop at last element
+            temp=temp.next;
+        }
+        Node newN=new Node(val);                  // new node at last
+        temp.next=newN;                           // make the last Node's next as the newN
+        return head;
+    }
