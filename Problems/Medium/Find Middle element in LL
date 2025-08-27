@@ -19,7 +19,7 @@ class Solution {
         int midNode=(cnt/2)+1;              // find midNode(int)
 
          temp=head;
-        while(temp!=null){
+        while(temp!=null){                                                                            //Complexity = O(n+n/2),O(1)
             midNode--;                   // reduce midNode
             if(midNode==0){              // once it reach zero, midNode is reached(common sense)
                 break;
@@ -28,4 +28,18 @@ class Solution {
         }
         return temp;                 // return the current temp after break of loop
     }
+}
+
+--------------optimised (Tortoise and hare algo)--------------
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;                              //T.C=O(n/2) fast pointer iterations
+            fast=fast.next.next;
+        }
+        return slow;
+   }
 }
