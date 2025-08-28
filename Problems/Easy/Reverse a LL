@@ -1,0 +1,55 @@
+-----------BruteForce------------
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+
+        ListNode temp=head;
+        Stack<Integer> st=new Stack<>();                                                               Complexity=O(2n),O(n)
+        while(temp!=null){
+            st.push(temp.val);                     // LIFO stored in reverse order
+            temp=temp.next;
+        }
+        temp=head;
+        while(temp!=null){
+            temp.val=st.pop();               // change the data in the order of stack
+            temp=temp.next;
+        }
+        return head;                        //return head as data itself changed
+    }
+}
+-----------Optimal(Interative)
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode prev=null;                                                                                   Complexity=O(n),O(1)
+        ListNode temp=head;
+        while(temp!=null){
+            ListNode front=temp.next;                 // take a front
+            temp.next=prev;                        // change next of current temp
+            prev=temp;                             // update prev
+            temp=front;                           //update temp
+        }
+        
+        return prev;                                 // return prev and not head as it is now the tail
+    }
+}
+------------Recursive Solution----------------
+class Solution {
+    public ListNode reverseList(ListNode head) { 
+        if(head==null || head.next==null){
+            return head;                            //base condition
+        }                                                        
+        ListNode newHead=reverseList(head.next);    // return the reversed LL elements of each call
+
+        ListNode front=head.next;                   // set front as head's next
+        front.next=head;                            // reverse next
+        head.next=null;                              //reverse next
+ 
+        return newHead;                        // return all LL elements as newHead
+    }
+}
