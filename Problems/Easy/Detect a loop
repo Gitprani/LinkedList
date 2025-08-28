@@ -4,7 +4,7 @@ public class Solution {
         if(head.next==null){
             return false;                          //if only one
         }
-        ListNode temp=head;
+        ListNode temp=head;                                                     Complexity=O(n*2*log(n)),O(n)
         Map<ListNode, int> mpp=new HashMap<>();
 
         while(temp!=null){                        
@@ -18,3 +18,21 @@ public class Solution {
     }
 }
 -----------------Optimised(Tortoise and Hare)-------------------
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+    if(head == null || head.next == null){ 
+        return false;
+    }
+    ListNode slow = head;                                             Complexity=O(n),O(1)
+    ListNode fast = head;
+
+    while(fast!=null && fast.next != null ) { 
+        slow = slow.next;                         
+        fast = fast.next.next;               // the distance b/w fast and slow will reduce and become zerr(slow==fast), if only in loop
+        if(slow == fast) { 
+            return true; 
+        }
+     }
+    return false;                          // if no loop, while loop violated
+    }
+} 
