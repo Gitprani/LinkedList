@@ -1,0 +1,20 @@
+---------BruteForce(with HashMap)------------
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head.next==null){
+            return false;                          //if only one
+        }
+        ListNode temp=head;
+        Map<ListNode, int> mpp=new HashMap<>();
+
+        while(temp!=null){                        
+            if(mpp.containsKey(temp)){      // if the node(object and memory address) again occurs then loop exist
+                return true;
+            }
+            mpp.put(temp,1);                // store nodes and set value as 1
+            temp=temp.next;                  // move temp
+        }
+        return false;              // if no stored node occurs again, then false
+    }
+}
+-----------------Optimised(Tortoise and Hare)-------------------
