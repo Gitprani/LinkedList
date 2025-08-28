@@ -35,7 +35,7 @@ class Solution {
             temp=front;                           //update temp
         }
         
-        return prev;                                 // return prev and not head as it is now the tail
+        return prev;                                 // return prev as it becomes the newHead of reversed LL
     }
 }
 ------------Recursive Solution----------------
