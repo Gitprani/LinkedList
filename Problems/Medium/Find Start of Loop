@@ -5,7 +5,7 @@ public class Solution {
         }
         ListNode temp=head;
         HashMap<ListNode,Integer> mpp=new HashMap<>();
-
+                                                                                          Complexity=O(n*2*logn), O(n)
         while(temp!=null){
             if(mpp.containsKey(temp)){        
                 return temp;              // return the temp where loop starts
@@ -16,3 +16,32 @@ public class Solution {
         return null;
     }
 }
+----------Optimised-----------------
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if(head==null || head.next==null){
+            return null;
+        }
+
+        ListNode slow=head;                                                             Complexity=O(n),O(1)
+        ListNode fast=head;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+
+            if(slow==fast){                // loop detected
+                slow=head;                 // initialize slow to head
+
+                while(slow!=fast){         // this loop will run only if loop detected
+                    slow=slow.next;        // just a step shift 
+                    fast=fast.next;        // just a step shift
+                }
+                return slow;               // after they collide, it is the start
+            }
+            
+        }
+        return null;
+     }
+}
+
