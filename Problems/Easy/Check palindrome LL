@@ -7,7 +7,7 @@ public boolean isPalindrome(ListNode head) {
             st.push(temp.val);        //store node values
             temp=temp.next;
         }
-
+                                                                                Complexity=O(2n),O(n)
         temp=head;
         while(temp!=null){
             if(temp.val!=st.peek()){             //peek() will return values in stack
