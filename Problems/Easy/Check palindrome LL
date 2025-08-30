@@ -1,0 +1,20 @@
+--------BruteForce------------
+public boolean isPalindrome(ListNode head) {
+        Stack<Integer> st=new Stack<>();           // as it is LIFO
+
+        ListNode temp=head;
+        while(temp!=null){                
+            st.push(temp.val);        //store node values
+            temp=temp.next;
+        }
+
+        temp=head;
+        while(temp!=null){
+            if(temp.val!=st.peek()){             //peek() will return values in stack
+                return false;
+            }
+            st.pop();                    // after each val check, remove from stack
+            temp=temp.next;         / shift temp
+        }
+        return true;
+    }
