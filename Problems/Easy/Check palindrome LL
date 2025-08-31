@@ -18,3 +18,45 @@ public boolean isPalindrome(ListNode head) {
         }
         return true;
     }
+-----------Optimised--------------
+class Solution {
+    public ListNode reverse(ListNode head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode temp=head;
+        ListNode prev=null;
+                                                   //Best Reverse Method
+        while(temp!=null){
+            ListNode front=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=front;
+        }
+        return prev;                        // return reversed LL elememts
+    }
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow=head;              
+        ListNode fast=head;
+
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }                                                       // Slow is the firstMid
+        ListNode newHead=reverse(slow.next);                    // Reverse the LL from slow.next(2nd half)    
+
+        ListNode first=head;
+        ListNode second=newHead;
+
+        while(second!=null){                             // as the fistMid is always pointing to tail(reversed LL) and second will reach null(at last)
+            if(first.val!=second.val){
+                reverse(newHead);          // reverse the Reversed LL to its org if not palindrome
+                return false;
+            }
+            first=first.next;     // move first
+            second=second.next;   // move second
+        }
+        reverse(newHead);         // reverse even if it is palindrome at the end to maintain orginality
+        return true;
+    }
+}
