@@ -45,6 +45,8 @@ class Solution {
             return head;                            //base condition
         }                                                        
         ListNode newHead=reverseList(head.next);    // return the reversed LL elements of each call
+       // putting this function call here is to break to last call
+       and return upwards
 
         ListNode front=head.next;                   // set front as head's next
         front.next=head;                            // reverse next
