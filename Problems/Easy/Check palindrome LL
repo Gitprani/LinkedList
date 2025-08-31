@@ -10,7 +10,7 @@ public boolean isPalindrome(ListNode head) {
                                                                                 Complexity=O(2n),O(n)
         temp=head;
         while(temp!=null){
-            if(temp.val!=st.peek()){             //peek() will return values in stack
+            if(temp.val!=st.peek()){         //directly pop()(remove and return top element)           //peek() will return values in stack
                 return false;
             }
             st.pop();                    // after each val check, remove from stack
@@ -60,3 +60,16 @@ class Solution {
         return true;
     }
 }
+
+--------------------Recursive Reverse Method----------------
+public ListNode reverse(ListNode head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode newHead=reverse(head.next);         // function calls will brek the solution till last node
+        ListNode front=head.next;               // intitialize a front
+        front.next=head;                reverse the next of front
+        head.next=null;                 reverse the next of head
+
+        return newHead;    // return head of reversed LL
+    }
