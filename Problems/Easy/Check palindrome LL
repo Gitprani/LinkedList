@@ -39,7 +39,7 @@ class Solution {
         ListNode slow=head;              
         ListNode fast=head;
 
-        while(fast.next!=null && fast.next.next!=null){
+        while(fast.next!=null && fast.next.next!=null){      // because we need 1st mid
             slow=slow.next;
             fast=fast.next.next;
         }                                                       // Slow is the firstMid
