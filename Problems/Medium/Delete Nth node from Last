@@ -1,6 +1,6 @@
 class Solution {
     public ListNode reverse(ListNode head){
-        if(head==null || head.next==null){
+        if(head==null || head.next==null){             //reverse function
             return head;
         }
 
@@ -13,25 +13,25 @@ class Solution {
         return newHead;
     }
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        int cnt=0;
-        ListNode newHead=reverse(head);
-        ListNode temp=newHead;
+        int cnt=0;                    
+        ListNode newHead=reverse(head);                           // get reversed LL
+        ListNode temp=newHead;                     
         ListNode prev=null;
         while(temp!=null){
             cnt++;
-            if(cnt==n){
-                if(n==1){
-                    newHead=temp.next;
+            if(cnt==n){       
+                if(n==1){                      // if 1st node of reversed(last of org LL)
+                    newHead=temp.next;       // just shift the newHead to next(remove current newHead)
                 }
                 else{
-                    prev.next=temp.next;
+                    prev.next=temp.next;      // remove current node(temp)
                 }
-                break;
+                break;           // stop the loop
             }
-            prev=temp;
-            temp=temp.next;
+            prev=temp;    // shift prev
+            temp=temp.next; // shift temp
         }
-        return reverse(newHead);
+        return reverse(newHead);       // return the reverse of nth node removed reversed LL
         
     }
 }
