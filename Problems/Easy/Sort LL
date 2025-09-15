@@ -1,0 +1,19 @@
+-----Brute Force---------
+class Solution {
+    public ListNode sortList(ListNode head) {
+        List<Integer> list=new ArrayList<>();
+        ListNode temp=head;
+                                                                 Complexity=O(n)+O(nlogn)+O(n),O(n)
+        while(temp!=null){
+            list.add(temp.val);
+            temp=temp.next;
+        }
+        Collections.sort(list);
+        temp=head;
+            for(int i=0;i<list.size();i++){
+            temp.val=list.get(i);
+            temp=temp.next;
+        }
+        return head;
+    }
+}
