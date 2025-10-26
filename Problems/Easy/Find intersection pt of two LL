@@ -1,0 +1,70 @@
+------Brute Force--------------
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        HashMap<ListNode, Integer> mpp=new HashMap<>();
+        ListNode temp=headA;
+        while(temp!=null){
+            mpp.put(temp,1);
+            temp=temp.next;
+        }                                                           Time Complexity = O(m+n), O(n)
+        temp=headB;
+        while(temp!=null){
+            if(mpp.containsKey(temp)){
+                return temp;
+            }
+            temp=temp.next;
+        }
+    return null;
+    }
+}
+--------- Optimised-------
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode temp=headA;
+        int cnt1=0;
+
+        while(temp!=null){
+            cnt1++;
+            temp=temp.next;
+        }
+        temp=headB;
+        int cnt2=0;                                   Complexity=O(m+n),O(1)
+
+        while(temp!=null){
+            cnt2++;
+            temp=temp.next;
+        }
+        if(cnt1<cnt2){
+            return getPoint(headA, headB, cnt2-cnt1);
+        }
+        else{
+            return getPoint(headB, headA, cnt1-cnt2);
+        }
+
+    }
+    public ListNode getPoint(ListNode head1, ListNode head2, int d){
+        while(d!=0){
+            d--;
+            head2=head2.next;
+        }
+        while(head1!=null && head2!=null){
+            if(head1==head2){
+                return head1;
+            }
+            head1=head1.next;
+            head2=head2.next;
+        }
+        return null;
+    }
+}
