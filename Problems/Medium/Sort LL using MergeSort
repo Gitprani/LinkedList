@@ -1,0 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode mid=findMid(head);                        // first midnode
+
+        ListNode lhead=head;          // head of left LL
+        ListNode rhead=mid.next;      // head of right LL
+        mid.next=null;          // breaking the LL
+        
+        lhead=sortList(lhead);                              // sort leftLL
+        rhead=sortList(rhead);                                // sort rightLL
+
+        return mergeSort(lhead, rhead);                    // merge and sort both LL into ans LL
+    }
+    public ListNode mergeSort(ListNode l,ListNode r){
+        ListNode ans=new ListNode(-1);                      // create a empty Node like empty "ans array"
+        ListNode temp=ans;                              // Initialize like a pointer to ans Node(LL)
+
+        while(l!=null && r!=null){
+            if(l.val<=r.val){                    // compare values
+            temp.next=l;              // just Link Node not value like in array 
+            l=l.next;
+            }
+            else{
+                temp.next=r;
+                r=r.next;
+            }
+            temp=temp.next;
+        }
+        if(l!=null){                        // remaining leftLL elements
+            temp.next=l;        // just link Node
+        }
+        if(r!=null){  
+            temp.next=r;     // just link Node of right LL
+        }
+        return ans.next;   // ans point to -1, ans.next is the head of sortedLL
+    }
+    public ListNode findMid(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head.next;          // a modification to get first mid(in even length)
+        
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+}
