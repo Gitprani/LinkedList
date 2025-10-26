@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-        if(head==null || head.next==null){
+        if(head==null || head.next==null){                                                            Complexity=O(nlogn, o(1){recursive stack space-negligible}
             return head;
         }
         ListNode mid=findMid(head);                        // first midnode
