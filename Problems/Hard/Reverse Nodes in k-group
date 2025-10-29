@@ -1,0 +1,55 @@
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode temp=head;
+        ListNode prevNode=null;             // last of splitted LL
+        ListNode nextNode=null;            // first of splitted LL
+
+        while(temp!=null){
+            ListNode K=findK(temp,k);      // kth node 
+            if(K==null){                   // if input length less than k                                             Complexity=O(2n), O(1)
+                if(prevNode!=null){       // in case of the LL parts less than K
+                    prevNode.next=temp;  // just link the prevNode to the head(temp)
+                }
+                break;       // if input length less than K, no operations will take place and no prevNode
+            }
+          // this is the actual algorithm
+            nextNode=K.next;                 // set the nextNode(first of newly splitted)
+            K.next=null;                     //split LL
+            reverseLL(temp);                 // reverse LL
+            if(temp==head){      // just for the first LL part
+                head=K;         // head need to be updated
+            }
+            else{
+                prevNode.next=K;     // for others, link lastNode to newly reversed LL(first =K)  
+            }
+                prevNode=temp;      // set prevNode
+                temp=nextNode;      // update temp for further cycles
+        }
+    return head;
+        
+    }
+    public ListNode findK(ListNode head,int k){       // just traversing k times and locating temp
+        ListNode temp=head;
+        while(temp!=null){
+            k--;
+            if(k==0){
+                return temp;
+            }
+            temp=temp.next;
+        }
+        return temp;
+    }
+    public void reverseLL(ListNode head){         // reversing using shifting ,optimal solution
+        if(head==null || head.next==null){
+            return;
+        }
+        ListNode temp=head;
+        ListNode prev=null;
+        while(temp!=null){
+            ListNode front=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=front;
+        }
+    }
+}
