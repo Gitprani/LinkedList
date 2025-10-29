@@ -1,0 +1,35 @@
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        int len=1;                               // set to 1, as start with head and stop at  last node
+        ListNode tail=head;
+        while(tail.next!=null){                // stop at tail so that can be set to null
+            tail=tail.next;                                                                                      Complexity=O(2n),O(1)
+            len++;                         // find actual length
+        }
+        if(k%len==0){                      // id multiples of k
+            return head;
+        }
+        k=k%len;                       // minimize k 
+        tail.next=head;           // set to head
+        ListNode newTail=findTail(head,len-k);         // find the newtail
+        head=newTail.next;                         // set new Head
+        newTail.next=null;                        // set newTail
+
+        
+        return head;
+    }
+    public ListNode findTail(ListNode head, int N){       // to find the stagnent nodes
+        ListNode temp=head;
+        while(temp!=null){
+            N--;
+            if(N==0){
+                break;
+            }
+            temp=temp.next;
+        }
+        return temp;
+    }
+}
