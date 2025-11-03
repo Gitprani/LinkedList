@@ -1,0 +1,19 @@
+class Solution {
+    public Node copyRandomList(Node head) {
+        Node temp=head;
+        Map<Node,Node> mpp=new HashMap<>();                // to map to copy nodes
+        while(temp!=null){
+            Node copyN=new Node(temp.val);             // create value nodes as a copies
+            mpp.put(temp,copyN);                 // map the curr to its copies(copyN)                 Complexity=O(2n), O(2n)
+            temp=temp.next;          // for all nodes
+        } 
+        temp=head;
+        while(temp!=null){
+            Node refN=mpp.get(temp);        // retrieve the copies
+            refN.next=mpp.get(temp.next);   // link the next copy to the curr copy
+            refN.random=mpp.get(temp.random);  // link the random to cuur's random
+            temp=temp.next;                    // for all copies
+        }
+        return mpp.get(head);              // mpp.get() ---> retrieves the value not key
+    }
+}
