@@ -1,0 +1,47 @@
+--------BruteForce------------
+class Node {
+    int data;
+    Node next;
+    Node bottom;
+
+    Node(int x) {
+        data = x;
+        next = null;               
+        bottom = null;            //child pointer
+    }
+}
+*/
+class Solution {
+    public Node flatten(Node root) {
+        // code here
+        ArrayList<Integer> arr=new ArrayList<>();
+        Node temp=root;
+        while(temp!=null){
+             Node t2=temp;              // another temp for vertical transversal                           Complexity=O(n*m) + O((n*m)log(n*m)) + O(n*m), O(n*m)+O(n*m)
+            while(t2!=null){       // will go down if exist
+                arr.add(t2.data);    
+                t2=t2.bottom;        // transverse down
+            }
+            temp=temp.next;         // simulataneously go to next node
+        }
+        Collections.sort(arr);
+        
+        return convert(arr);
+        
+        
+    }
+    public Node convert(List<Integer> arr){
+        if(arr.size()==0){                          
+            return null;
+        }
+        Node head=new Node(arr.get(0));
+        Node temp=head;
+        for(int i=1;i<arr.size();i++){
+            Node newN=new Node(arr.get(i));
+            temp.bottom=newN;                        // just link to bottom(child) 
+            temp=temp.bottom;                         // tranverse downwards
+        }
+        return head;
+        
+    }
+}
